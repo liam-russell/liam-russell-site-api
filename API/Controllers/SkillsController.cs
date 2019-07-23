@@ -15,6 +15,7 @@ namespace LiamRussell.Api.Controllers {
         /// Get a list of skills
         /// </summary>
         /// <param name="categories">Limit to skills from a particular category.</param>
+        /// <param name="keywords">Search skills by keyword</param>
         /// <param name="skip">For pagination, skip the first x items.</param>
         /// <param name="take">For pagination, take the next x items.</param>
         /// <returns>A list of skills</returns>

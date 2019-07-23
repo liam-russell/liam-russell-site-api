@@ -10,7 +10,13 @@ namespace LiamRussell.Api.Models.Skills {
             Key = skill.Key;
             Name = skill.Name;
         }
+        /// <summary>
+        /// A unique string identifying the skill
+        /// </summary>
         public string Key { get; set; }
+        /// <summary>
+        /// The name of the skill
+        /// </summary>
         public string Name { get; }
     }
 }
