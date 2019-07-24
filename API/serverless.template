@@ -11,7 +11,7 @@
 				"CodeUri": "",
 				"MemorySize": 256,
 				"Timeout": 10,
-				"Role": "AWSLambdaBasicExecutionRole",
+				"Role": { "Fn::Sub" : "arn:aws:iam::${AWS::AccountId}:role/AWSLambdaPrimaryExecutionRole" },
 				"Events": {
 					"ProxyResource": {
 						"Type": "Api",
