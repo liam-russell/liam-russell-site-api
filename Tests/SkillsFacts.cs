@@ -5,7 +5,7 @@ using System.Linq;
 using Xunit;
 
 namespace LiamRussell.Tests {
-    public class SkillsFacts {
+    public static class SkillsFacts {
         [Fact]
         public static void No_Duplicate_Skills_Keys() => AssertNoDuplicateKeys(Skills.All, c => c.Key);
 
