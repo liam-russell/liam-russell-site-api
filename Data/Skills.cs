@@ -14,7 +14,7 @@ namespace LiamRussell.Data {
     ///    Perhaps if my requirements change in the future this will be persisted to external storage of some sort.
     /// </remarks>
     public static class Skills {
-        public static IEnumerable<Skill> All = new Skill[] {
+        public static readonly IEnumerable<Skill> All = new [] {
             #region languages
             new Skill {
                 Key = "dotnet",
@@ -151,7 +151,7 @@ namespace LiamRussell.Data {
                 Link = "https://aws.amazon.com/",
                 Proficiency = Proficiency.Proficient,
                 Description = "I am familiar with many AWS Services",
-                SubSkills = new SubSkill[] {
+                SubSkills = new [] {
                     new SubSkill("RDS - Relational Database Service", "https://aws.amazon.com/rds/"),
                     new SubSkill("S3 - Simple Email Service", "https://aws.amazon.com/s3/"),
                     new SubSkill("EC2 - Elastic Compute Cloud", "https://aws.amazon.com/ec2/"),
