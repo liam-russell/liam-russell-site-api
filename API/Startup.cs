@@ -23,7 +23,7 @@ namespace LiamRussell.Api {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Liam Russell API", Version = "v1" });
                 c.DescribeAllEnumsAsStrings();
                 c.DescribeStringEnumsInCamelCase();
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlFile = $"{typeof(Startup).Assembly.GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });

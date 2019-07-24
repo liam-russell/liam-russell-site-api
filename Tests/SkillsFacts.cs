@@ -23,6 +23,8 @@ namespace LiamRussell.Tests {
                             exceptions.Add(new KeyNotFoundException($"Skill '{skill.Key}' contains a reference to '{related}', but skill '{related}' does not exist."));
                         } else if(resolvedRelation?.RelatedSkillKeys?.Contains(skill.Key) != true) {
                             exceptions.Add(new KeyNotFoundException($"Expected skill '{related}' to contain a reference to '{skill.Key}' but it did not."));
+                        } else {
+                            // A match was found, all is well.
                         }
                     }
                 }
