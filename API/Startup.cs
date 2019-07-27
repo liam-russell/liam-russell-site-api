@@ -21,7 +21,11 @@ namespace LiamRussell.Api {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddMvc(config => {
-                (config.OutputFormatters.Single(f => f is StringOutputFormatter) as StringOutputFormatter).SupportedMediaTypes.Remove("text/plain");
+                var stringFormatter = options.OutputFormatters.OfType<StringOutputFormatter>().FirstOrDefault();
+                if(stringFormatter != null) {
+                    options.OutputFormatters.Remove(stringFormatter);
+                    options.OutputFormatters.Add(stringFormatter);
+                }
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Liam Russell API", Version = "v1" });
