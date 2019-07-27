@@ -6,7 +6,7 @@ using System.Linq;
 namespace LiamRussell.Data {
     public static class SkillExtensions {
         public static IEnumerable<Skill> WithOptionalCategories(this IEnumerable<Skill> skills, IEnumerable<string> categoryKeys) {
-            if(categoryKeys?.Any() != true) {
+            if(categoryKeys == null || !categoryKeys.Any()) {
                 return skills;
             }
 

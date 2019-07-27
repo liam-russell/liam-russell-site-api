@@ -1,5 +1,7 @@
 using LiamRussell.Data;
+using LiamRussell.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace LiamRussell.Api.Controllers {
     [Route("api/v1/skillcategories")]
@@ -9,6 +11,6 @@ namespace LiamRussell.Api.Controllers {
         /// List available skill categories
         /// </summary>
         [HttpGet("")]
-        public ActionResult Index() => Ok(SkillCategories.All);
+        public ActionResult<IEnumerable<SkillCategory>> Index() => Ok(SkillCategories.All);
     }
 }

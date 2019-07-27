@@ -22,12 +22,12 @@ namespace LiamRussell.Api {
         public void ConfigureServices(IServiceCollection services) {
             services.AddMvc(config => {
                 (config.OutputFormatters.Single(f => f is StringOutputFormatter) as StringOutputFormatter).SupportedMediaTypes.Remove("text/plain");
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Liam Russell API", Version = "v1" });
                 c.DescribeAllEnumsAsStrings();
                 c.DescribeStringEnumsInCamelCase();
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlFile = $"{typeof(Startup).Assembly.GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
@@ -35,8 +35,10 @@ namespace LiamRussell.Api {
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
-            app.UseSwagger();
+        public static void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+            app.UseSwagger(c => {
+                c.RouteTemplate = "spec-{documentName}.json";
+            });
             if(env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             } else {
@@ -44,12 +46,11 @@ namespace LiamRussell.Api {
                 app.UseHsts();
             }
 
-
-
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseReDoc(c => {
-                c.SpecUrl = "/swagger/v1/swagger.json";
+                c.RoutePrefix = "docs";
+                c.SpecUrl = "/spec-v1.json";
                 c.DocumentTitle = "Liam Russell API V1";
             });
         }
