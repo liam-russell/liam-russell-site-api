@@ -21,10 +21,10 @@ namespace LiamRussell.Api {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddMvc(config => {
-                var stringFormatter = options.OutputFormatters.OfType<StringOutputFormatter>().FirstOrDefault();
+                var stringFormatter = config.OutputFormatters.OfType<StringOutputFormatter>().FirstOrDefault();
                 if(stringFormatter != null) {
-                    options.OutputFormatters.Remove(stringFormatter);
-                    options.OutputFormatters.Add(stringFormatter);
+                    config.OutputFormatters.Remove(stringFormatter);
+                    config.OutputFormatters.Add(stringFormatter);
                 }
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c => {
