@@ -42,6 +42,18 @@ namespace LiamRussell.Api {
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(config => {
+                config.WithOrigins(
+                    "http://localhost:3000",
+                    "https://liamrussell.com.au/",
+                    "https://dev.liamrussell.com.au/",
+                    "https://liamr.co",
+                    "https://dev.liamr.co"
+                );
+                config.AllowAnyHeader();
+                config.AllowAnyMethod();
+                config.AllowCredentials();
+            });
             app.UseMvc();
             app.UseReDoc(c => {
                 c.RoutePrefix = "docs";
