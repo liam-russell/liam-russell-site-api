@@ -236,6 +236,20 @@ namespace LiamRussell.Data {
                     "netlify",
                     "aws"
                 }
+            },
+            new Skill {
+                Key = "vc",
+                Name = "Version Control",
+                Link = "https://git-scm.com/",
+                Proficiency = Proficiency.Proficient,
+                Categories = new [] { SkillCategories.DevOps, SkillCategories.Cloud },
+                SubSkills = new[] {
+                    new SubSkill("Git", "https://git-scm.com/"),
+                    new SubSkill("Mercurial", "https://www.mercurial-scm.org/"),
+                    new SubSkill("Bitbucket", "https://bitbucket.org/"),
+                    new SubSkill("GitHub", "https://github.com/")
+                },
+                Description = "I'm familiar with both Git and Mercurial version control systems and have used them with multiple cloud version control providers."
             }
             #endregion
         };
