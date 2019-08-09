@@ -20,7 +20,7 @@ namespace LiamRussell.Api.Controllers {
         /// <param name="take">For pagination, take the next x items.</param>
         /// <returns>A list of skills</returns>
         [HttpGet("")]
-        public ActionResult<IEnumerable<IndexModel>> Index([FromQuery] IEnumerable<string> categories = null, string keywords = null, int skip = 0, int take = 20) =>
+        public ActionResult<IEnumerable<IndexModel>> Index(string[] categories, string keywords = null, int skip = 0, int take = 20) =>
             Ok(Skills.All
                 .WithOptionalCategories(categories)
                 .WithKeywords(keywords)
