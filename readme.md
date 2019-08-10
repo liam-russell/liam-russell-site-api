@@ -16,7 +16,7 @@ Development API and Documentation: [https://develop-api.liamr.co/](https://devel
 ~~Development Site: [https://develop.liamr.co/](https://develop.liamr.co/)~~ (TODO)
 
 ## Technology Stack
-*   Runtime Framework: [Microsoft .NET Core 2.2](https://dotnet.microsoft.com/)
+*   Runtime Framework: [Microsoft .NET Core 2.1](https://dotnet.microsoft.com/)
 *   API Framework: [Microsoft Web API](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-2.2)
 *   API Specification Generation: [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
 *   API Documentation [ReDoc](https://github.com/Redocly/redoc)
