@@ -17,14 +17,18 @@ namespace LiamRussell.Data {
         public static readonly IEnumerable<Skill> All = new [] {
             #region languages
             new Skill {
-                Key = "dotnet",
-                Name = "Dotnet core and .NET Framework (C#)",
+                Key = "csharp",
+                Name = "C# (dotnet)",
                 Categories = new [] { SkillCategories.Backend, SkillCategories.ProgrammingLanguages },
                 Link = "https://dotnet.microsoft.com/",
                 Proficiency = Proficiency.Proficient,
                 Description = "I've worked with C# and Microsoft .NET professionally extensively," +
                 " including both the legacy .NET Framework and the more modern dotnet core, " +
-                "including deploying the latter serverlessly."
+                "including deploying the latter serverlessly.",
+                RelatedSkillKeys = new [] {
+                    "dotnet",
+                    "mvc"
+                }
             },
             new Skill {
                 Key = "javascript",
@@ -54,7 +58,7 @@ namespace LiamRussell.Data {
             },
             new Skill {
                 Key = "css",
-                Name = "CSS, Less and SASS",
+                Name = "CSS, Less and SCSS/SASS",
                 Categories = new [] { SkillCategories.Frontend, SkillCategories.ProgrammingLanguages },
                 Link = "https://sass-lang.com/",
                 Proficiency = Proficiency.Proficient,
@@ -75,6 +79,14 @@ namespace LiamRussell.Data {
                 " it extensively within an application development context. I am familiar with common ORM's" +
                 " such as Entity Framework. I have some experience with other database systems such" +
                 " as MySQL, SQLite and AWS DynamoDB."
+            },
+            new Skill {
+                Key = "graphql",
+                Name = "GraphQL",
+                Categories = new [] { SkillCategories.Databases, SkillCategories.Backend, SkillCategories.Frontend, SkillCategories.ProgrammingLanguages },
+                Link = "https://graphql.org/",
+                Proficiency = Proficiency.Familiar,
+                Description = "I've used GraphQL as an alternative to a RESTful API."
             },
             #endregion
             #region frameworks
@@ -109,9 +121,27 @@ namespace LiamRussell.Data {
             new Skill {
                 Key = "mvc",
                 Name = "Microsoft MVC + Web API",
+                Description = "I've used the dotnet framework's MVC and Web API frameworks to build multiple applications. This site uses Web API core to power its API.",
                 Categories = new [] { SkillCategories.Backend, SkillCategories.Frameworks },
                 Link = "https://dotnet.microsoft.com/apps/aspnet/mvc",
-                Proficiency = Proficiency.Proficient
+                Proficiency = Proficiency.Proficient,
+                RelatedSkillKeys = new [] {
+                    "dotnet",
+                    "csharp"
+                }
+            },
+
+            new Skill {
+                Key = "dotnet",
+                Name = "C# (dotnet)",
+                Categories = new [] { SkillCategories.Backend, SkillCategories.ProgrammingLanguages },
+                Link = "https://dotnet.microsoft.com/",
+                Proficiency = Proficiency.Proficient,
+                Description = "I'm familiar with both .NET framework and dotnet core and have used both to build production applications.",
+                RelatedSkillKeys = new [] {
+                    "csharp",
+                    "mvc"
+                }
             },
             new Skill {
                 Key = "bootstrap",
@@ -125,7 +155,6 @@ namespace LiamRussell.Data {
                     "html",
                     "css"
                 }
-
             },
             #endregion
             #region cloud

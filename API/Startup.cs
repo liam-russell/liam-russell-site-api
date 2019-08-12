@@ -8,7 +8,6 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace LiamRussell.Api {
     public class Startup {
@@ -53,15 +52,18 @@ namespace LiamRussell.Api {
             app.UseHttpsRedirection();
             app.UseCors(config => {
                 config.WithOrigins(
+                    //Local development origin
                     "http://localhost:3000",
-                    "https://liamrussell.com.au/",
-                    "https://dev.liamrussell.com.au/",
+                    //Production origins
                     "https://liamr.co",
-                    "https://dev.liamr.co"
+                    "https://liamrussell.com.au/",
+                    //Develop branch origins
+                    "https://dev.liamr.co",
+                    "https://dev.liamrussell.com.au/"
                 );
                 config.AllowAnyHeader();
-                config.AllowAnyMethod();
-                config.AllowCredentials();
+                //At this stage, the API only allows data to be retrieved.
+                config.WithMethods("GET", "OPTIONS", "HEAD");
             });
             app.UseMvc();
             app.UseReDoc(c => {
