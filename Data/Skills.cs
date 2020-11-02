@@ -247,7 +247,8 @@ namespace LiamRussell.Data {
                     new SubSkill("Git", "https://git-scm.com/"),
                     new SubSkill("Mercurial", "https://www.mercurial-scm.org/"),
                     new SubSkill("Bitbucket", "https://bitbucket.org/"),
-                    new SubSkill("GitHub", "https://github.com/")
+                    new SubSkill("GitHub", "https://github.com/"),
+                    new SubSkill("Azure DevOps", "https://dev.azure.com")
                 },
                 Description = "I'm familiar with both Git and Mercurial version control systems and have used them with multiple cloud version control providers."
             }

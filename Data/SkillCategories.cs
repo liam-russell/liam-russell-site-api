@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace LiamRussell.Data {
     public static class SkillCategories {
-        private static readonly List<SkillCategory> all = new List<SkillCategory>();
-        public static IEnumerable<SkillCategory> All => all;
+        private static readonly List<SkillCategory> Items = new List<SkillCategory>();
+        public static IEnumerable<SkillCategory> All => Items;
 
         public static readonly SkillCategory Databases = Add("db", "Databases");
         public static readonly SkillCategory Cloud = Add("cloud", "Cloud");
@@ -22,7 +22,7 @@ namespace LiamRussell.Data {
                 Name = name
             };
 
-            all.Add(cat);
+            Items.Add(cat);
             return cat;
         }
     }
