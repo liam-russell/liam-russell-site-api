@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace LiamRussell.Api {
     public class Startup {
@@ -20,16 +22,31 @@ namespace LiamRussell.Api {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddMvc(config => {
+                config.EnableEndpointRouting = false;
                 var stringFormatter = config.OutputFormatters.OfType<StringOutputFormatter>().FirstOrDefault();
-                if(stringFormatter != null) {
+                if (stringFormatter != null) {
                     config.OutputFormatters.Remove(stringFormatter);
                     config.OutputFormatters.Add(stringFormatter);
                 }
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            })
+            .AddJsonOptions(options => {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
             services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Liam Russell API", Version = "v1" });
-                c.DescribeAllEnumsAsStrings();
-                c.DescribeStringEnumsInCamelCase();
+                c.SwaggerDoc("v1", new OpenApiInfo {
+                    Title = "Liam Russell API",
+                    Version = "v1",
+                    Contact = new OpenApiContact {
+                        Name = "Liam Russell",
+                        Url = new Uri("https://liamr.co/")
+                    },
+                    Description = "The API behind liamr.co and liamrussell.com.au",
+                    License = new OpenApiLicense {
+                        Name = "All rights reserved"
+                    }
+                });
                 var xmlFile = $"{typeof(Startup).Assembly.GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -38,7 +55,7 @@ namespace LiamRussell.Api {
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public static void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             app.UseSwagger(c => {
                 c.RouteTemplate = "spec-{documentName}.json";
             });

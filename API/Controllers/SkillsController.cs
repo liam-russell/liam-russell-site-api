@@ -6,6 +6,7 @@ using LiamRussell.Data.Models;
 using LiamRussell.Api.Framework;
 using LiamRussell.Api.Models.Skills;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace LiamRussell.Api.Controllers {
     [Route("api/v1/skills")]
@@ -20,7 +21,7 @@ namespace LiamRussell.Api.Controllers {
         /// <param name="take">For pagination, take the next x items.</param>
         /// <returns>A list of skills</returns>
         [HttpGet("")]
-        public ActionResult<IEnumerable<IndexModel>> Index(string[] categories, string keywords = null, int skip = 0, int take = 20) =>
+        public ActionResult<IEnumerable<IndexModel>> Index(string[] categories, string? keywords = null, int skip = 0, int take = 20) =>
             Ok(Skills.All
                 .WithOptionalCategories(categories)
                 .WithKeywords(keywords)
@@ -34,7 +35,7 @@ namespace LiamRussell.Api.Controllers {
         /// <param name="key">The key of the skill</param>
         /// <returns>A skill</returns>
         [HttpGet("{key}")]
-        public ActionResult<Skill> Get(string key) {
+        public ActionResult<Skill> Get([Required] string key) {
             var skill = Skills.All.SingleOrDefault(s => s.Key.Equals(key, StringComparison.OrdinalIgnoreCase));
             if(skill == null) {
                 return NotFound();

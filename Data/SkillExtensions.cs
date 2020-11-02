@@ -20,7 +20,7 @@ namespace LiamRussell.Data {
         }
 
 
-        public static IEnumerable<Skill> WithKeywords(this IEnumerable<Skill> skills, string keywords) {
+        public static IEnumerable<Skill> WithKeywords(this IEnumerable<Skill> skills, string? keywords) {
             if(string.IsNullOrWhiteSpace(keywords)) {
                 return skills;
             }

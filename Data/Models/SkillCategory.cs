@@ -1,6 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace LiamRussell.Data.Models {
     public class SkillCategory {
-        public string Key { get; set; }
-        public string Name { get; set; }
+        [Required]
+        public string Key { get; set; } = string.Empty;
+
+        [Required]
+        public string Name { get; set; } = string.Empty;
     }
 }

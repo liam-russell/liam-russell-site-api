@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace LiamRussell.Api.Framework {
     public static class PaginationExtensions {
-        public static IEnumerable<T> Paged<T>(this IEnumerable<T> items, int skip, int take) {
+        public static IEnumerable<T> Paged<T>(this IEnumerable<T>? items, int skip, int take) {
             if(items == null) {
                 throw new ArgumentNullException(nameof(items), $"'{nameof(items)}' cannot be null.");
             }
