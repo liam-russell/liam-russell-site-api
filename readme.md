@@ -3,7 +3,7 @@
 _The Serverless RESTful API behind my personal site._
 
 [![Codeship Status for liam-russell/liam-russell-site-api](https://app.codeship.com/projects/fbeab620-8f62-0137-273e-7a7d1773aa54/status?branch=master)](https://app.codeship.com/projects/355901)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/39fcc7aabeac43f7a891a8c278ad7fcb)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=liam-russell/liam-russell-site-api&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6f2fd8937ac8dc673331/maintainability)](https://codeclimate.com/github/liam-russell/liam-russell-site-api/maintainability)
 
 ## Links
 
