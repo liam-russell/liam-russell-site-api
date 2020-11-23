@@ -17,7 +17,7 @@ namespace LiamRussell.Tests {
             var min = 0 + skip;
             var max = min + take;
             var page = testData.Paged(skip, take);
-            Assert.All(page, item => {
+            Assert.All(page.Items, item => {
                 Assert.InRange(item, min, max);
             });
         }
