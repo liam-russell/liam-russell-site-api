@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using LiamRussell.Api.Framework;
 using LiamRussell.Data;
 using LiamRussell.Data.Models;
-using LiamRussell.Api.Framework;
-using LiamRussell.Api.Models.Skills;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace LiamRussell.Api.Controllers {
     [Route("api/v1/skills")]
@@ -21,18 +20,16 @@ namespace LiamRussell.Api.Controllers {
         /// <param name="take">For pagination, take the next x items.</param>
         /// <returns>A list of skills</returns>
         [HttpGet("")]
-        public ActionResult<IEnumerable<IndexModel>> Index(
+        public ActionResult<Paged<Skill>> Index(
             [FromQuery] IEnumerable<string> categories,
             [FromQuery] string? keywords = null,
             [FromQuery] int skip = 0,
             [FromQuery] int take = 20
-        ) =>
-            Ok(Skills.All
-                .WithOptionalCategories(categories)
-                .WithKeywords(keywords)
-                .Paged(skip, take)
-                .Select(s => new IndexModel(s))
-            );
+        ) => Ok(Skills.All
+            .WithOptionalCategories(categories)
+            .WithKeywords(keywords)
+            .Paged(skip, take)
+        );
 
         /// <summary>
         /// Find a specific skill

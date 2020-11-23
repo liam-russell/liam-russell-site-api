@@ -19,7 +19,6 @@ namespace LiamRussell.Data {
             );
         }
 
-
         public static IEnumerable<Skill> WithKeywords(this IEnumerable<Skill> skills, string? keywords) {
             if(string.IsNullOrWhiteSpace(keywords)) {
                 return skills;
@@ -30,6 +29,7 @@ namespace LiamRussell.Data {
             bool skillSearchExpr(Skill s) =>
                 s.Key?.Search(kw) == true
                 || s.Name?.Search(kw) == true
+                || s.Link?.Search(kw) == true
                 || s.Description?.Search(kw) == true
                 || s.Categories?.Any(c => c.Key?.Search(kw) == true || c.Name?.Search(kw) == true) == true
                 || s.SubSkills?.Any(ss => ss.Name?.Search(kw) == true || ss.Url?.Search(kw) == true) == true
@@ -40,6 +40,6 @@ namespace LiamRussell.Data {
         }
 
         private static bool Search(this string @search, IEnumerable<string> @for) =>
-            @for.Any(k => @search.IndexOf(k, StringComparison.OrdinalIgnoreCase) > 0);
+            @for.Any(k => @search.IndexOf(k, StringComparison.OrdinalIgnoreCase) >= 0);
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace LiamRussell.Api.Framework {
     public static class PaginationExtensions {
-        public static IEnumerable<T> Paged<T>(this IEnumerable<T>? items, int skip, int take) {
+        public static Paged<T> Paged<T>(this IEnumerable<T>? items, int skip, int take) {
             if(items == null) {
                 throw new ArgumentNullException(nameof(items), $"'{nameof(items)}' cannot be null.");
             }
@@ -17,7 +17,12 @@ namespace LiamRussell.Api.Framework {
                 throw new ArgumentOutOfRangeException(nameof(take), $"'{nameof(take)}' cannot be less than zero.");
             }
 
-            return items.Skip(skip).Take(take);
+            return new Paged<T> {
+                Skip = skip,
+                Take = take,
+                Total = items.Count(),
+                Items = items.Skip(skip).Take(take)
+            };
         }
     }
 }
